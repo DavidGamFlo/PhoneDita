@@ -18,6 +18,37 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/*
+class BotonView extends StatefulWidget {
+  const BotonView({Key? key}); super(key: key);
+
+  @override
+  _BotonViewState createState() => _BotonViewState();
+}
+
+class _BotonViewState extends State<BotonView>{
+  bool _Cambio = false;
+
+  void _cambioVentana(){
+    setState((){
+      _Cambio = !_Cambio;
+    });
+  }
+
+  @override 
+  Widget build(BuildContext context){
+    return GestureDetector(
+      onTap: _cambioVentana,
+      child: Container(
+            decoration: 
+              const BoxDecoration(color: Colors.blue),
+              
+          ),
+          const Text('view'),
+    )
+  }
+}
+*/
 class ListaComidas extends StatelessWidget {
   const ListaComidas({
     Key? key,
@@ -50,11 +81,40 @@ class ListaComidas extends StatelessWidget {
               rated: rated,
             ),
           ),
-          const Icon(
-            Icons.more_vert,
-            size: 16.0,
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SecondRoute()),
+              );
+            },
+            child: Text('View'),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  const SecondRoute({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyApp()),
+            );
+          },
+          child: Text('Go back!'),
+        ),
       ),
     );
   }
@@ -88,8 +148,8 @@ class _DescripcionComidas extends StatelessWidget {
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
           Text(
-            titulo,
-            style: const TextStyle(fontSize: 10),
+            descripcion,
+            style: const TextStyle(fontSize: 15),
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 6.0)),
           Text(
@@ -111,6 +171,150 @@ class Comidas extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       itemExtent: 106.0,
       children: <ListaComidas>[
+        ListaComidas(
+          titulo: 'Suaperro',
+          rated: 5.0,
+          imagen: Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage('assets/Ayudante.jpg'),
+                fit: BoxFit.cover,
+              ),
+              border: Border.all(
+                color: Colors.white,
+                width: 5,
+              ),
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+          descripcion: 'Ricos tacos de suaperro',
+        ),
+        ListaComidas(
+          titulo: 'Pepinguinos',
+          rated: 4.0,
+          imagen: Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage("assets/descarga.jpg"),
+                fit: BoxFit.cover,
+              ),
+              border: Border.all(
+                color: Colors.white,
+                width: 5,
+              ),
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+          descripcion: 'Pepinguinos bien delinux',
+        ),
+        ListaComidas(
+          titulo: 'Suaperro',
+          rated: 5.0,
+          imagen: Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage('assets/Ayudante.jpg'),
+                fit: BoxFit.cover,
+              ),
+              border: Border.all(
+                color: Colors.white,
+                width: 5,
+              ),
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+          descripcion: 'Ricos tacos de suaperro',
+        ),
+        ListaComidas(
+          titulo: 'Pepinguinos',
+          rated: 4.0,
+          imagen: Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage("assets/descarga.jpg"),
+                fit: BoxFit.cover,
+              ),
+              border: Border.all(
+                color: Colors.white,
+                width: 5,
+              ),
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+          descripcion: 'Pepinguinos bien delinux',
+        ),
+        ListaComidas(
+          titulo: 'Suaperro',
+          rated: 5.0,
+          imagen: Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage('assets/Ayudante.jpg'),
+                fit: BoxFit.cover,
+              ),
+              border: Border.all(
+                color: Colors.white,
+                width: 5,
+              ),
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+          descripcion: 'Ricos tacos de suaperro',
+        ),
+        ListaComidas(
+          titulo: 'Pepinguinos',
+          rated: 4.0,
+          imagen: Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage("assets/descarga.jpg"),
+                fit: BoxFit.cover,
+              ),
+              border: Border.all(
+                color: Colors.white,
+                width: 5,
+              ),
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+          descripcion: 'Pepinguinos bien delinux',
+        ),
+        ListaComidas(
+          titulo: 'Suaperro',
+          rated: 5.0,
+          imagen: Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage('assets/Ayudante.jpg'),
+                fit: BoxFit.cover,
+              ),
+              border: Border.all(
+                color: Colors.white,
+                width: 5,
+              ),
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+          descripcion: 'Ricos tacos de suaperro',
+        ),
+        ListaComidas(
+          titulo: 'Pepinguinos',
+          rated: 4.0,
+          imagen: Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage("assets/descarga.jpg"),
+                fit: BoxFit.cover,
+              ),
+              border: Border.all(
+                color: Colors.white,
+                width: 5,
+              ),
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
+          descripcion: 'Pepinguinos bien delinux',
+        ),
         ListaComidas(
           titulo: 'Suaperro',
           rated: 5.0,
