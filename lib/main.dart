@@ -56,11 +56,13 @@ class ListaComidas extends StatelessWidget {
     required this.titulo,
     required this.descripcion,
     required this.rated,
+    required this.precio,
   }) : super(key: key);
   final Widget imagen;
   final String titulo;
   final String descripcion;
   final double rated;
+  final double precio;
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +81,7 @@ class ListaComidas extends StatelessWidget {
               titulo: titulo,
               descripcion: descripcion,
               rated: rated,
+              precio: precio,
             ),
           ),
           ElevatedButton(
@@ -126,11 +129,13 @@ class _DescripcionComidas extends StatelessWidget {
     required this.titulo,
     required this.descripcion,
     required this.rated,
+    required this.precio,
   }) : super(key: key);
 
   final String titulo;
   final String descripcion;
   final double rated;
+  final double precio;
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +156,12 @@ class _DescripcionComidas extends StatelessWidget {
             descripcion,
             style: const TextStyle(fontSize: 15),
           ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 6.0)),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
+          Text(
+            '$precio mxn',
+            style: const TextStyle(fontSize: 15.0),
+          ),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 1.0)),
           Text(
             '$rated calificación',
             style: const TextStyle(fontSize: 15.0),
@@ -187,6 +197,7 @@ class Comidas extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
           ),
+          precio: 20.00,
           descripcion: 'Ricos tacos de suaperro',
         ),
         ListaComidas(
@@ -205,156 +216,25 @@ class Comidas extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
           ),
-          descripcion: 'Pepinguinos bien delinux',
-        ),
-        ListaComidas(
-          titulo: 'Suaperro',
-          rated: 5.0,
-          imagen: Container(
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage('assets/Ayudante.jpg'),
-                fit: BoxFit.cover,
-              ),
-              border: Border.all(
-                color: Colors.white,
-                width: 5,
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
-          descripcion: 'Ricos tacos de suaperro',
-        ),
-        ListaComidas(
-          titulo: 'Pepinguinos',
-          rated: 4.0,
-          imagen: Container(
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage("assets/descarga.jpg"),
-                fit: BoxFit.cover,
-              ),
-              border: Border.all(
-                color: Colors.white,
-                width: 5,
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
-          descripcion: 'Pepinguinos bien delinux',
-        ),
-        ListaComidas(
-          titulo: 'Suaperro',
-          rated: 5.0,
-          imagen: Container(
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage('assets/Ayudante.jpg'),
-                fit: BoxFit.cover,
-              ),
-              border: Border.all(
-                color: Colors.white,
-                width: 5,
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
-          descripcion: 'Ricos tacos de suaperro',
-        ),
-        ListaComidas(
-          titulo: 'Pepinguinos',
-          rated: 4.0,
-          imagen: Container(
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage("assets/descarga.jpg"),
-                fit: BoxFit.cover,
-              ),
-              border: Border.all(
-                color: Colors.white,
-                width: 5,
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
-          descripcion: 'Pepinguinos bien delinux',
-        ),
-        ListaComidas(
-          titulo: 'Suaperro',
-          rated: 5.0,
-          imagen: Container(
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage('assets/Ayudante.jpg'),
-                fit: BoxFit.cover,
-              ),
-              border: Border.all(
-                color: Colors.white,
-                width: 5,
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
-          descripcion: 'Ricos tacos de suaperro',
-        ),
-        ListaComidas(
-          titulo: 'Pepinguinos',
-          rated: 4.0,
-          imagen: Container(
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage("assets/descarga.jpg"),
-                fit: BoxFit.cover,
-              ),
-              border: Border.all(
-                color: Colors.white,
-                width: 5,
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
-          descripcion: 'Pepinguinos bien delinux',
-        ),
-        ListaComidas(
-          titulo: 'Suaperro',
-          rated: 5.0,
-          imagen: Container(
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage('assets/Ayudante.jpg'),
-                fit: BoxFit.cover,
-              ),
-              border: Border.all(
-                color: Colors.white,
-                width: 5,
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
-          descripcion: 'Ricos tacos de suaperro',
-        ),
-        ListaComidas(
-          titulo: 'Pepinguinos',
-          rated: 4.0,
-          imagen: Container(
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage("assets/descarga.jpg"),
-                fit: BoxFit.cover,
-              ),
-              border: Border.all(
-                color: Colors.white,
-                width: 5,
-              ),
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
+          precio: 50.00,
           descripcion: 'Pepinguinos bien delinux',
         ),
       ],
     );
   }
 }
+
+class Todo {
+  final String titulo;
+  final String descripcion;
+  final double rated;
+  final Widget imagen;
+  Todo(this.titulo, this.descripcion, this.imagen, this.rated);
+}
+
+abstract class ListItem {}
+
+class _MenuItem extends ListTile {}
 
 void main() {
   runApp(const MyApp());
