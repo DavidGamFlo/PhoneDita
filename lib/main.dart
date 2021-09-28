@@ -88,7 +88,13 @@ class ListaComidas extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SecondRoute()),
+                MaterialPageRoute(
+                    builder: (context) => SecondRoute(
+                        imagen: imagen,
+                        titulo: titulo,
+                        descripcion: descripcion,
+                        rated: rated,
+                        precio: precio)),
               );
             },
             child: Text('View'),
@@ -100,23 +106,57 @@ class ListaComidas extends StatelessWidget {
 }
 
 class SecondRoute extends StatelessWidget {
-  const SecondRoute({Key? key}) : super(key: key);
+  const SecondRoute({
+    Key? key,
+    required this.imagen,
+    required this.titulo,
+    required this.descripcion,
+    required this.rated,
+    required this.precio,
+  }) : super(key: key);
+
+  final Widget imagen;
+  final String titulo;
+  final String descripcion;
+  final double rated;
+  final double precio;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Route"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MyApp()),
-            );
-          },
-          child: Text('Go back!'),
+    return MaterialApp(
+      title: 'Detalles',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Detalles"),
+        ),
+        body: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              flex: 2,
+              child: imagen,
+            ),
+            Expanded(
+              flex: 3,
+              child: _DescripcionComidas(
+                titulo: titulo,
+                descripcion: descripcion,
+                rated: rated,
+                precio: precio,
+              ),
+            ),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyApp()),
+                  );
+                },
+                child: Text('Go back!'),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -189,6 +229,7 @@ class Comidas extends StatelessWidget {
               image: const DecorationImage(
                 image: AssetImage('assets/Ayudante.jpg'),
                 fit: BoxFit.cover,
+                scale: 1.0,
               ),
               border: Border.all(
                 color: Colors.white,
@@ -233,8 +274,6 @@ class Todo {
 }
 
 abstract class ListItem {}
-
-class _MenuItem extends ListTile {}
 
 void main() {
   runApp(const MyApp());
