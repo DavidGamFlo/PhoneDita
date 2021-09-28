@@ -7,10 +7,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fonditas',
+      title: 'Phoneditas',
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.blueGrey[600],
+        appBarTheme: AppBarTheme(
+          color: Colors.deepPurple[900],
+        ),
+        textTheme: TextTheme(bodyText2: TextStyle(color: Colors.grey[300])),
+      ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('PhoneDitas'),
+          title: Text(
+            'PhoneDitas',
+            style: TextStyle(color: Colors.grey[400]),
+          ),
         ),
         body: const Comidas(),
       ),
@@ -18,37 +28,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-/*
-class BotonView extends StatefulWidget {
-  const BotonView({Key? key}); super(key: key);
-
-  @override
-  _BotonViewState createState() => _BotonViewState();
-}
-
-class _BotonViewState extends State<BotonView>{
-  bool _Cambio = false;
-
-  void _cambioVentana(){
-    setState((){
-      _Cambio = !_Cambio;
-    });
-  }
-
-  @override 
-  Widget build(BuildContext context){
-    return GestureDetector(
-      onTap: _cambioVentana,
-      child: Container(
-            decoration: 
-              const BoxDecoration(color: Colors.blue),
-              
-          ),
-          const Text('view'),
-    )
-  }
-}
-*/
 class ListaComidas extends StatelessWidget {
   const ListaComidas({
     Key? key,
@@ -85,6 +64,10 @@ class ListaComidas extends StatelessWidget {
             ),
           ),
           ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(Colors.deepPurple),
+            ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -125,9 +108,19 @@ class SecondRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Detalles',
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          color: Colors.lightGreen[200],
+        ),
+        textTheme: TextTheme(bodyText2: TextStyle(color: Colors.blueGrey[900])),
+      ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Detalles"),
+          title: Text(
+            "Detalles",
+            style: TextStyle(color: Colors.blueGrey[800]),
+          ),
         ),
         body: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,6 +140,10 @@ class SecondRoute extends StatelessWidget {
             ),
             Expanded(
               child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blueGrey),
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -203,8 +200,13 @@ class _DescripcionComidas extends StatelessWidget {
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 1.0)),
           Text(
-            '$rated calificación',
+            '$rated estrellas',
             style: const TextStyle(fontSize: 15.0),
+          ),
+          Icon(
+            Icons.star,
+            color: Colors.amber[600],
+            size: 12,
           ),
         ],
       ),
