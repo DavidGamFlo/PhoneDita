@@ -65,7 +65,7 @@ class ListaComidas extends StatelessWidget {
     required this.precio,
     this.descripcionc = "",
   }) : super(key: key);
-  final Widget imagen;
+  final String imagen;
   final String titulo;
   final String descripcion;
   final double rated;
@@ -81,7 +81,19 @@ class ListaComidas extends StatelessWidget {
         children: <Widget>[
           Expanded(
             flex: 2,
-            child: imagen,
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(imagen),
+                  fit: BoxFit.contain,
+                ),
+                border: Border.all(
+                  color: Colors.white,
+                  width: 5,
+                ),
+                borderRadius: BorderRadius.circular(15),
+              ),
+            ),
           ),
           Expanded(
             flex: 3,

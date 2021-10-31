@@ -11,7 +11,7 @@ class SecondRoute extends StatelessWidget {
     required this.precio,
   }) : super(key: key);
 
-  final Widget imagen;
+  final String imagen;
   final String titulo;
   final String descripcion;
   final double rated;
@@ -38,16 +38,14 @@ class SecondRoute extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Expanded(
-              child: Detallito(
-                imagen: imagen,
-                titulo: titulo,
-                descripcion: descripcion,
-                rated: rated,
-                precio: precio,
-              ),
-              flex: 1,
+            Detallito(
+              imagen: imagen,
+              titulo: titulo,
+              descripcion: descripcion,
+              rated: rated,
+              precio: precio,
             ),
+            Contadores(),
           ],
         ),
       ),
