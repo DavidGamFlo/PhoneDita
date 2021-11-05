@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'notificacion_carrito.dart';
 
 class Detallito extends StatelessWidget {
   const Detallito({
@@ -62,8 +63,12 @@ class Detallito extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const MyApp()),
                 );
               },
-              child: const Text('Go back!'),
+              child: const Text(
+                'Menú',
+                style: TextStyle(fontSize: 13),
+              ),
             ),
+            flex: 1,
           ),
         ],
       ),
@@ -72,14 +77,27 @@ class Detallito extends StatelessWidget {
 }
 
 class Contadores extends StatefulWidget {
-  const Contadores({Key? key}) : super(key: key);
+  const Contadores({
+    Key? key,
+    required this.precio,
+    required this.titulo,
+  }) : super(key: key);
+  final double precio;
+  final String titulo;
 
   @override
-  _Contadores createState() => _Contadores();
+  _Contadores createState() => _Contadores(precio: precio, titulo: titulo);
 }
 
 class _Contadores extends State<Contadores> {
+  _Contadores({
+    required this.precio,
+    required this.titulo,
+  });
+  final double precio;
+  final String titulo;
   int cuenta = 0;
+  double total = 0;
 
   void _incremento() {
     setState(() {
@@ -93,6 +111,12 @@ class _Contadores extends State<Contadores> {
     });
   }
 
+  void _calculo() {
+    setState(() {
+      total = costo(cuenta, precio);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -100,22 +124,21 @@ class _Contadores extends State<Contadores> {
       child: Row(
         children: [
           Expanded(
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Colors.blueGrey),
-              ),
+            child: IconButton(
               onPressed: () {
                 if (cuenta > 0) {
                   _decremento();
                 }
               },
-              child: const Icon(
+              icon: const Icon(
                 Icons.remove_circle_outline_outlined,
-                color: Colors.white,
+                color: Colors.blueGrey,
                 size: 20,
               ),
             ),
+          ),
+          const SizedBox(
+            width: 20,
           ),
           Expanded(
             child: Container(
@@ -132,6 +155,9 @@ class _Contadores extends State<Contadores> {
               ),
             ),
           ),
+          const SizedBox(
+            width: 20,
+          ),
           Expanded(
             child: ElevatedButton(
               style: ButtonStyle(
@@ -145,6 +171,32 @@ class _Contadores extends State<Contadores> {
               },
               child: const Icon(
                 Icons.add_circle_outline_outlined,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          Expanded(
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.blueGrey),
+              ),
+              onPressed: () {
+                if (cuenta > 0) {
+                  _calculo();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => CarritoCompras(
+                            titulo: titulo,
+                            total: total,
+                          )));
+                }
+              },
+              child: const Icon(
+                Icons.add_shopping_cart_outlined,
                 color: Colors.white,
                 size: 20,
               ),

@@ -45,7 +45,10 @@ class SecondRoute extends StatelessWidget {
               rated: rated,
               precio: precio,
             ),
-            Contadores(),
+            Contadores(
+              precio: precio,
+              titulo: titulo,
+            ),
           ],
         ),
       ),
