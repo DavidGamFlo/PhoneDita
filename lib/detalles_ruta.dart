@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_proobes_1/notificacion_carrito.dart';
 import 'detalles_const.dart';
 
 class SecondRoute extends StatelessWidget {
@@ -34,6 +35,14 @@ class SecondRoute extends StatelessWidget {
             "Detalles",
             style: TextStyle(color: Colors.blueGrey[800]),
           ),
+          actions: <Widget>[
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => CarritoCompras()));
+                },
+                icon: const Icon(Icons.shopping_cart_outlined))
+          ],
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'notificacion_carrito.dart';
+import 'dart:io';
 
 class Detallito extends StatelessWidget {
   const Detallito({
@@ -124,15 +125,19 @@ class _Contadores extends State<Contadores> {
       child: Row(
         children: [
           Expanded(
-            child: IconButton(
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.blueGrey),
+              ),
               onPressed: () {
                 if (cuenta > 0) {
                   _decremento();
                 }
               },
-              icon: const Icon(
+              child: const Icon(
                 Icons.remove_circle_outline_outlined,
-                color: Colors.blueGrey,
+                color: Colors.white,
                 size: 20,
               ),
             ),
@@ -188,11 +193,17 @@ class _Contadores extends State<Contadores> {
               onPressed: () {
                 if (cuenta > 0) {
                   _calculo();
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => CarritoCompras(
-                            titulo: titulo,
-                            total: total,
-                          )));
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(
+                          builder: (context) => CarritoCompras(
+                                titulo: titulo,
+                                total: total,
+                              )))
+                      .then((result) {
+                    setState(() {
+                      total = result;
+                    });
+                  });
                 }
               },
               child: const Icon(

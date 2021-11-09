@@ -50,7 +50,7 @@ class _CarritoCompras extends State<CarritoCompras> {
             Text(total.toStringAsFixed(2) + ' mxn'),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pop(total);
               },
               child: const Text('back'),
             ),
